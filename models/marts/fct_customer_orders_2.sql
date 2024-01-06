@@ -2,13 +2,13 @@ with
 
 customers as (
 
-  select * from {{ ref('stg_jaffle_shop__customers') }}
+  select * from {{ ref('stg_jaffle_shop__customers_2') }}
 
 ),
 
 paid_orders as (
 
-  select * from {{ ref('int_orders') }}
+  select * from {{ ref('int_orders_2') }}
 
 ),
 
