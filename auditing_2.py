@@ -1,4 +1,4 @@
-{# in dbt Develop #}
+""" {# in dbt Develop #}
 
   {% set old_etl_relation=ref('customer_orders_2') -%}
 
@@ -9,3 +9,4 @@
       b_relation=dbt_relation,
       primary_key="order_id"
   ) }}
+""" 
