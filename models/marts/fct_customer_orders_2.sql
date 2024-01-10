@@ -23,7 +23,7 @@ final as (
     paid_orders.payment_finalized_date,
     customers.customer_first_name,
     customers.customer_last_name,
-
+     
     -- sales transaction sequence
     row_number() over (order by paid_orders.order_placed_at, paid_orders.order_id) as transaction_seq,
 
