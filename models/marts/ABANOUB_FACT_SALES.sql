@@ -1,4 +1,4 @@
-
+{{ config(materialized='table') }}
 with
 
     NYC_SALES_CLEANEND_SOURCE AS (

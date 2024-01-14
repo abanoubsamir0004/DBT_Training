@@ -2,6 +2,9 @@
 The PROPERTY_AT_SALE_ID is generated using dense ranking based on building class category, building class at the time of sale, tax class at the time of sale, and year built.
 The final query retrieves all columns from the dimension table. #}
 
+{{ config(materialized='table') }}
+
+
 WITH 
 
     NYC_SALES_CLEANEND AS (

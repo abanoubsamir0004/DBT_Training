@@ -2,6 +2,8 @@
 The SALES_DATE_ID column serves as a unique identifier representing the sale date in YYYYMMDD format. 
 The query retrieves all columns from the dimension table and orders the results by the sale year in ascending order.#}
 
+{{ config(materialized='table') }}
+
 WITH 
 
 DIM_SALED_DATE AS (

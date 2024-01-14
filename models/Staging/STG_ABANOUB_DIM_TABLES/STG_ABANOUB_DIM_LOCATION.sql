@@ -2,6 +2,8 @@
 The LOCATION_ID column combines borough, neighborhood, and ZIP code details for a distinct representation. 
 The final query retrieves all columns from the dimension table and orders the results by the location identifier in ascending order.#}
 
+{{ config(materialized='table') }}
+
 WITH 
 
     NYC_SALES_CLEANEND AS (

@@ -2,6 +2,8 @@
 The PROPERTY_AT_PRESENT_ID is assigned using dense ranking based on building class at present, tax class at present, and tax subclass at present. 
 The final query retrieves all columns from the dimension table.#}
 
+{{ config(materialized='table') }}
+
 WITH 
 
     NYC_SALES_CLEANEND AS (
