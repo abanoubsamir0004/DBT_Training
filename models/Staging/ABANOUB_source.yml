@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+    - name: SALES
+      description: This is a replica of the sales database for our task
+      database: RAW
+      schema: SALES
+      tables:
+          - name: NYC_SALES
+            description: One record per sales.
