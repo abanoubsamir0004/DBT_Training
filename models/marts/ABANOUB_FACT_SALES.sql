@@ -1,3 +1,4 @@
+
 with
 
     NYC_SALES_CLEANEND_SOURCE AS (
