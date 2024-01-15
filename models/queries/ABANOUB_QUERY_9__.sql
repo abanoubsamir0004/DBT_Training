@@ -1,5 +1,5 @@
 WITH 
-
+   
     FACT_SALES AS (
         SELECT * FROM {{ ref('ABANOUB_FACT_SALES') }}
     ),
