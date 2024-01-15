@@ -47,23 +47,24 @@ with
         
     SPLIT_CLEAN_TAX_CLASS AS (
         SELECT
-
-            -- Check if their is null in the TAX_CLASS_AT_PRESENT col then make it 'UNKOWN'
-            -- SPLIT TAX_CLASS_AT_PRESENT TO BE (TAX_CLASS_AT_PRESENT AND TAX_SUBCLASS_AT_PRESENT)
-
             PK_NUMBER,
             CASE
+                WHEN TAX_CLASS_AT_PRESENT IS NULL OR TRIM(TAX_CLASS_AT_PRESENT) = '' 
+                    THEN 'UNKNOWN'
                 WHEN LENGTH(COALESCE(NULLIF(TRIM(TAX_CLASS_AT_PRESENT), ''), 'UNKNOWN')) > 1 
                     THEN LEFT(TAX_CLASS_AT_PRESENT, 1)
-                ELSE COALESCE(NULLIF(TRIM(TAX_CLASS_AT_PRESENT), ''), 'UNKNOWN')
+                ELSE 'UNKNOWN'
             END AS TAX_CLASS_AT_PRESENT,
             CASE
+                WHEN TAX_CLASS_AT_PRESENT IS NULL OR TRIM(TAX_CLASS_AT_PRESENT) = '' 
+                    THEN 'UNKNOWN'
                 WHEN LENGTH(COALESCE(NULLIF(TRIM(TAX_CLASS_AT_PRESENT), ''), 'UNKNOWN')) > 1 
                     THEN RIGHT(TAX_CLASS_AT_PRESENT, 1)
                 ELSE 'UNKNOWN'
             END AS TAX_SUBCLASS_AT_PRESENT
         FROM NYC_SALES_WITH_PK_NUMBER
     ),
+
 
     BUILDING_CLASS_AT_PRESENT_CLEANED AS (
         SELECT 
