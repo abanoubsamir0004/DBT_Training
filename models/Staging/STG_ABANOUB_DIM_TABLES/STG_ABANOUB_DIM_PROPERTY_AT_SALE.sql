@@ -1,5 +1,5 @@
 {# This code creates a dimension table called DIM_PROPERTY_AT_SALE by extracting unique property-related details from the STG_ABANOUB_NYC_SALES_CLEANEND source. 
-The PROPERTY_AT_SALE_ID is generated using dense ranking based on building class category, building class at the time of sale, tax class at the time of sale, and year built.
+The PROPERTY_AT_SALE_ID is generated using dense ranking based on building class at the time of sale, tax class at the time of sale, and year built.
 The final query retrieves all columns from the dimension table. and has 8617 unique row #}
 
 {{ config(materialized='table') }}
