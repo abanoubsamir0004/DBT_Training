@@ -42,3 +42,5 @@ models:
         +materialized: table
     Staging:
       +materialized: view
+    queries:
+      +materialized: view
