@@ -27,7 +27,6 @@ WITH
             ZIP_CODE
             
         FROM NYC_SALES_CLEANEND
-        ORDER BY LOCATION_ID ASC
     )
 
 SELECT *
