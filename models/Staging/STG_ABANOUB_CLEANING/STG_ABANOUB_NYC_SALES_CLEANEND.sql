@@ -263,11 +263,7 @@ with
                 WHEN SALE_PRICE LIKE '%$%' 
                     THEN CAST(REPLACE(REPLACE(SALE_PRICE, '$', ''), ',', '') AS INT)
                 ELSE 
-                    CASE
-                        WHEN CAST(REPLACE(SALE_PRICE, ',', '') AS INT) <= 1000
-                            THEN NULL
-                        ELSE CAST(REPLACE(SALE_PRICE, ',', '') AS INT)
-                    END
+                    CAST(REPLACE(SALE_PRICE, ',', '') AS INT)
             END AS SALE_PRICE
 
         FROM NYC_SALES_WITH_PK_NUMBER       
