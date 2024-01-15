@@ -1,5 +1,5 @@
 {# This code establishes a dimension table named DIM_PROPERTY_AT_PRESENT by capturing distinct property-related attributes from the STG_ABANOUB_NYC_SALES_CLEANEND source. 
-The PROPERTY_AT_PRESENT_ID is assigned using dense ranking based on building class at present, tax class at present, and tax subclass at present. 
+The PROPERTY_AT_PRESENT_ID is assigned using dense ranking based on building class category, building class at present, tax class at present, and tax subclass at present. 
 The final query retrieves all columns from the dimension table. and has 908 unique row#}
 
 
