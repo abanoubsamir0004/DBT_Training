@@ -16,6 +16,19 @@ The goal of this project is to design a star schema using dbt for a dataset sour
         - [STG_ABANOUB_DIM_SALES_DATE](#stg_abanoub_dim_sales_date)
     2. [Marts](#marts)
         - [ABANOUB_FACT_SALES](#abanoub_fact_sales)
+    3. [Queries](#query)
+        - [Query 1](#query_1)
+        - [Query 2](#query_2)
+        - [Query 3](#query_3)
+        - [Query 4](#query_4)
+        - [Query 5](#query_5)
+        - [Query 6](#query_6)
+        - [Query 7](#query_7)
+        - [Query 8](#query_8)
+        - [Query 9](#query_9)
+        - [Query 10](#query_10)
+        - [Query 11](#query_11)
+
 
 # 1- Data Introduction
 
@@ -106,9 +119,9 @@ WHERE DATE_YEAR != 2016;
 
 # 4- dbt Models
 
-## Staging Models Folder
+## 1- Staging Models Folder
 
-### 1- STG_ABANOUB_NYC_SALES_CLEANED
+### 1.1- STG_ABANOUB_NYC_SALES_CLEANED
 
 In the Staging folder, the `STG_ABANOUB_NYC_SALES_CLEANED` model focuses on cleaning the source data. The Common Table Expressions (CTEs) involved in this process include:
 
@@ -145,35 +158,35 @@ In the Staging folder, the `STG_ABANOUB_NYC_SALES_CLEANED` model focuses on clea
 16. **FINAL:**
     - Joins all cleaned and processed columns from previous CTEs and generates the final dataset for analysis.
 
-### 2- STG_ABANOUB_DIM_LOCATION
+### 1.2- STG_ABANOUB_DIM_LOCATION
 
 In the Staging folder, the `STG_ABANOUB_DIM_LOCATION` model creates a dimension table named DIM_LOCATION by extracting unique location-related information from the STG_ABANOUB_NYC_SALES_CLEANEND source.
 
 **Description:**
 The `DIM_LOCATION` dimension table is designed to capture location-related details extracted from the STG_ABANOUB_NYC_SALES_CLEANEND source. The table includes a unique identifier, `LOCATION_ID`, which combines borough, neighborhood, and ZIP code information for a distinct representation of each location.
 
-### 3- STG_ABANOUB_DIM_PROPERTY_AT_PRESENT
+### 1.3- STG_ABANOUB_DIM_PROPERTY_AT_PRESENT
 
 In the Staging folder, the `STG_ABANOUB_DIM_PROPERTY_AT_PRESENT` model creates a dimension table named DIM_PROPERTY_AT_PRESENT by capturing distinct property-related attributes from the STG_ABANOUB_NYC_SALES_CLEANEND source.
 
 **Description:**
 The `DIM_PROPERTY_AT_PRESENT` dimension table focuses on extracting and organizing distinct property-related attributes from the STG_ABANOUB_NYC_SALES_CLEANEND source. It includes a unique identifier, `PROPERTY_AT_PRESENT_ID`, assigned through dense ranking based on building class category, building class at present, tax class at present, and tax subclass at present.
 
-### 4- STG_ABANOUB_DIM_PROPERTY_AT_SALE
+### 1.4- STG_ABANOUB_DIM_PROPERTY_AT_SALE
 
 In the Staging folder, the `STG_ABANOUB_DIM_PROPERTY_AT_SALE` model creates a dimension table named DIM_PROPERTY_AT_SALE by extracting unique property-related details from the STG_ABANOUB_NYC_SALES_CLEANEND source.
 
 **Description:**
 The `DIM_PROPERTY_AT_SALE` dimension table is designed to capture unique property-related details from the STG_ABANOUB_NYC_SALES_CLEANEND source. It includes a unique identifier, `PROPERTY_AT_SALE_ID`, generated through dense ranking based on building class at the time of sale, tax class at the time of sale, and year built.
 
-### 5- STG_ABANOUB_DIM_SALES_DATE
+### 1.5- STG_ABANOUB_DIM_SALES_DATE
 
 In the Staging folder, the `STG_ABANOUB_DIM_SALES_DATE` model creates a dimension table named DIM_SALE_DATE by extracting and formatting date-related details from the STG_ABANOUB_NYC_SALES_CLEANEND source.
 
 **Description:**
 The `DIM_SALE_DATE` dimension table focuses on extracting and formatting date-related details from the STG_ABANOUB_NYC_SALES_CLEANEND source. It includes a unique identifier, `SALES_DATE_ID`, representing the sale date in YYYYMMDD format.
 
-## Marts
+## 2- Marts
 
 ### ABANOUB_FACT_SALES
 
@@ -216,6 +229,32 @@ These degenerated dimensions provide specific details related to tax block, tax 
 
 **Final Query:**
 The final query for this model performs a join with the mentioned dimension tables, extracts the necessary foreign key identifiers, and selects the basic measurements from the cleaned data in `STG_ABANOUB_NYC_SALES_CLEANED`.
+
+## 3- Queries
+
+### 3.1- Query 1
+
+### 3.2- Query 2
+
+### 3.3- Query 3
+
+### 3.4- Query 4
+
+### 3.5- Query 5
+
+### 3.6- Query 6
+
+### 3.7- Query 7
+
+### 3.8- Query 8
+
+### 3.9- Query 9
+
+### 3.10- Query 10
+
+### 3.11- Query 11
+
+
 
 ---
 
