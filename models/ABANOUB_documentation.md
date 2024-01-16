@@ -83,11 +83,11 @@ To initiate the data loading process, a Storage Integration named `s3_integratio
 
 A Snowflake Stage, denoted as `s3_stage`, has been established to serve as an intermediary for data transfer between Snowflake and our AWS S3 bucket. This stage is configured to leverage the previously defined Storage Integration (`s3_integration`). The storage location ARN ensures precise identification and retrieval of data from the S3 bucket.
 
+![stage](https://github.com/abanoubsamir0004/dbt_test/assets/153556384/59b3bec0-140a-4bb4-8325-d69281ae6b04)
+
 ### Data Validation and Labeling
 
 Before transferring data from the staging area to Snowflake tables, a crucial step involves validating and labeling the data based on the year. The dataset spans three years: 2016, 2017, and 2018. SQL queries are employed to inspect each file in the staging area and verify that its content corresponds to the expected year. This meticulous validation ensures the integrity of the data before proceeding with the data transfer.
-
-![stage](https://github.com/abanoubsamir0004/dbt_test/assets/153556384/59b3bec0-140a-4bb4-8325-d69281ae6b04)
 
 #### Example Query:
 
