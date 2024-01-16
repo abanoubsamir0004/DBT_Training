@@ -1,3 +1,5 @@
+{# Calculate the total sale price over time by different date parts.#} 
+
 WITH 
 
     FACT_SALES AS (

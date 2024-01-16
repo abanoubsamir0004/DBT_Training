@@ -1,5 +1,6 @@
-WITH 
+{# Identify the building class category with the highest average land square feet.#}
 
+WITH 
 
    FACT_SALES AS (
         SELECT * FROM {{ ref('ABANOUB_FACT_SALES') }}

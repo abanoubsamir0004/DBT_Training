@@ -1,3 +1,5 @@
+{#Calculate the average sale price per borough.#}
+
 WITH 
 
     FACT_SALES AS (
