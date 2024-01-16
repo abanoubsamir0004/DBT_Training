@@ -6,18 +6,20 @@ The goal of this project is to design a star schema using dbt for a dataset sour
 
 # Table of Contents
 
+## Table of Contents
+
 1. [Data Introduction](#data-introduction)
 2. [Data Loading to Snowflake](#data-loading-to-snowflake)
 3. [Star Schema](#star-schema)
 4. [dbt Models](#dbt-models)
     1. [Staging Models](#staging-models)
-        - [STG_ABANOUB_NYC_SALES_CLEANED](#stg-abanoub-nyc-sales-cleaned)
-        - [STG_ABANOUB_DIM_LOCATION](#stg-abanoub-dim-location)
-        - [STG_ABANOUB_DIM_PROPERTY_AT_PRESENT](#stg-abanoub-dim-property-at-present)
-        - [STG_ABANOUB_DIM_PROPERTY_AT_SALE](#stg-abanoub-dim-property-at-sale)
-        - [STG_ABANOUB_DIM_SALES_DATE](#stg-abanoub-dim-sales-date)
+        - [STG_ABANOUB_NYC_SALES_CLEANED](#stg_abanoub_nyc_sales_cleaned)
+        - [STG_ABANOUB_DIM_LOCATION](#stg_abanoub_dim_location)
+        - [STG_ABANOUB_DIM_PROPERTY_AT_PRESENT](#stg_abanoub_dim_property_at_present)
+        - [STG_ABANOUB_DIM_PROPERTY_AT_SALE](#stg_abanoub_dim_property_at_sale)
+        - [STG_ABANOUB_DIM_SALES_DATE](#stg_abanoub_dim_sales_date)
     2. [Marts](#marts)
-        - [ABANOUB_FACT_SALES](#abanoub-fact-sales)
+        - [ABANOUB_FACT_SALES](#-abanoub_fact_sales)
     3. [Queries](#queries)
         - [Query 1](#query-1)
         - [Query 2](#query-2)
@@ -33,7 +35,8 @@ The goal of this project is to design a star schema using dbt for a dataset sour
 5. [Most Common Data Issues](#most-common-data-issues)
 
 
-# 1- Data Introduction
+
+# 1- Data Introduction <a name="data-introduction"></a>
 
 ### Source: AWS S3 Bucket - New York City Sales
 
@@ -89,7 +92,7 @@ The dataset comprises information related to property sales in New York City [**
    - **Sale Date:**
      - Date the property was sold.
 
-# 2- Data Loading to Snowflake
+# 2- Data Loading to Snowflake <a name="data-loading-to-snowflake"></a>
 
 ### Setting Up Storage Integration
 
@@ -114,17 +117,17 @@ FROM @S3_STAGE/2016_NYC_Property_Sales__10212019.csv t
 WHERE DATE_YEAR != 2016;
 ```
 
-# 3- Star Schema
+# 3- Star Schema <a name="star-schema"></a>
 
  This image  offers a snapshot of the designed star schema, showcasing the relationships between fact and dimension tables.
 
 ![Star Schema](https://github.com/abanoubsamir0004/dbt_test/assets/153556384/4a8bab4b-1479-4ad2-a1b2-e21e2c8d261d)
 
-# 4- dbt Models
+# 4- dbt Models <a name="dbt-models"></a>
 
-## 1- Staging Models Folder
+## 1- Staging Models Folder <a name="staging-models"></a>
 
-### 1.1- STG_ABANOUB_NYC_SALES_CLEANED
+### 1.1- STG_ABANOUB_NYC_SALES_CLEANED  <a name="stg_abanoub_nyc_sales_cleaned"></a>
 
 In the Staging folder, the `STG_ABANOUB_NYC_SALES_CLEANED` model focuses on cleaning the source data. The (CTEs) involved in this process include:
 
