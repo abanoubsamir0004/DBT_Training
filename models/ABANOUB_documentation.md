@@ -7,7 +7,7 @@ The goal of this project is to design a star schema using dbt for a dataset sour
 1. [Data Introduction](#data-introduction)
 2. [Data Loading to Snowflake](#data-loading-to-snowflake)
 3. [Star Schema](#star-schema)
-4. [dbt Models](#dbt-Models)
+4. [dbt Models](#dbt Models)
     1. [Staging Models](#staging-models)
         - [STG_ABANOUB_NYC_SALES_CLEANED](#stg_abanoub_nyc_sales_cleaned)
         - [STG_ABANOUB_DIM_LOCATION](#stg_abanoub_dim_location)
