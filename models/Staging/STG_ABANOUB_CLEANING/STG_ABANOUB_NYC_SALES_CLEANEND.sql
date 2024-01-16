@@ -44,24 +44,27 @@ with
             *
         FROM {{ source('SALES', 'NYC_SALES') }}
     ),
-        
+            
     SPLIT_CLEAN_TAX_CLASS AS (
         SELECT
             PK_NUMBER,
+
             CASE
-                WHEN TAX_CLASS_AT_PRESENT IS NULL OR TRIM(TAX_CLASS_AT_PRESENT) = '' 
-                    THEN 'UNKNOWN'
-                WHEN LENGTH(COALESCE(NULLIF(TRIM(TAX_CLASS_AT_PRESENT), ''), 'UNKNOWN')) > 1 
+                WHEN TAX_CLASS_AT_PRESENT IS NOT NULL AND LENGTH(TRIM(TAX_CLASS_AT_PRESENT)) > 1 
                     THEN LEFT(TAX_CLASS_AT_PRESENT, 1)
-                ELSE 'UNKNOWN'
+                WHEN TAX_CLASS_AT_PRESENT IS NULL OR TRIM(TAX_CLASS_AT_PRESENT) = '' 
+                    THEN 'UNKNOWN'
+                ELSE TAX_CLASS_AT_PRESENT
             END AS TAX_CLASS_AT_PRESENT,
+
             CASE
                 WHEN TAX_CLASS_AT_PRESENT IS NULL OR TRIM(TAX_CLASS_AT_PRESENT) = '' 
                     THEN 'UNKNOWN'
-                WHEN LENGTH(COALESCE(NULLIF(TRIM(TAX_CLASS_AT_PRESENT), ''), 'UNKNOWN')) > 1 
+                WHEN TAX_CLASS_AT_PRESENT IS NOT NULL AND LENGTH(TRIM(TAX_CLASS_AT_PRESENT)) > 1 
                     THEN RIGHT(TAX_CLASS_AT_PRESENT, 1)
                 ELSE 'UNKNOWN'
             END AS TAX_SUBCLASS_AT_PRESENT
+
         FROM NYC_SALES_WITH_PK_NUMBER
     ),
 
