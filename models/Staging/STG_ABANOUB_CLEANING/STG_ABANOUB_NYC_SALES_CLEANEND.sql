@@ -78,23 +78,36 @@ with
         FROM NYC_SALES_WITH_PK_NUMBER
     ),
 
-    APARTMENT_NUMBER_CLEANED AS (
+    ADDRESS_APARTMENT_NUMBER_CLEANED AS (
         SELECT
             -- get apartment number from the address when the address has a comma then the value of the apartment number
-            -- else make it 'UNKOWN'
-        PK_NUMBER,
-        CASE
-            WHEN TRIM(APARTMENT_NUMBER) = '' OR APARTMENT_NUMBER IS NULL
-            THEN
-                CASE
-                    WHEN POSITION(',' IN ADDRESS) > 0
-                    THEN TRIM(SUBSTRING(ADDRESS, POSITION(',' IN ADDRESS) + 1))
-                    ELSE 'UNKNOWN'
-                END
-            ELSE APARTMENT_NUMBER
-        END AS APARTMENT_NUMBER
+            -- else make it 'UNKNOWN'
+            PK_NUMBER,
+            CASE
+                WHEN TRIM(APARTMENT_NUMBER) = '' OR APARTMENT_NUMBER IS NULL
+                THEN
+                    CASE
+                        WHEN POSITION(',' IN ADDRESS) > 0
+                        THEN 
+                            -- Extract apartment number
+                            TRIM(SUBSTRING(ADDRESS, POSITION(',' IN ADDRESS) + 1)) 
+                        ELSE 'UNKNOWN'
+                    END
+                ELSE 
+                    APARTMENT_NUMBER
+            END AS APARTMENT_NUMBER,
+            CASE
+                WHEN POSITION(',' IN ADDRESS) > 0
+                THEN 
+                    -- Extract address before the comma
+                    TRIM(SUBSTRING(ADDRESS, 1, POSITION(',' IN ADDRESS) - 1))
+                ELSE 
+                    -- No comma, so the entire address is used
+                    ADDRESS
+            END AS ADDRESS
         FROM NYC_SALES_WITH_PK_NUMBER
     ),
+
 
     RESIDENTIAL_UNITS_CAST AS (
         SELECT 
@@ -309,9 +322,9 @@ with
 
             BUILDING_CLASS_AT_PRESENT_CLEANED.BUILDING_CLASS_AT_PRESENT,       
 
-            ADDRESS,
+            ADDRESS_APARTMENT_NUMBER_CLEANED.ADDRESS,
 
-            APARTMENT_NUMBER_CLEANED.APARTMENT_NUMBER,
+            ADDRESS_APARTMENT_NUMBER_CLEANED.APARTMENT_NUMBER,
 
             ZIP_CODE,
 
@@ -343,8 +356,8 @@ with
         LEFT JOIN BUILDING_CLASS_AT_PRESENT_CLEANED 
             ON NYC_SALES_WITH_PK_NUMBER.PK_NUMBER = BUILDING_CLASS_AT_PRESENT_CLEANED.PK_NUMBER
        
-        LEFT JOIN APARTMENT_NUMBER_CLEANED 
-            ON NYC_SALES_WITH_PK_NUMBER.PK_NUMBER = APARTMENT_NUMBER_CLEANED.PK_NUMBER
+        LEFT JOIN ADDRESS_APARTMENT_NUMBER_CLEANED 
+            ON NYC_SALES_WITH_PK_NUMBER.PK_NUMBER = ADDRESS_APARTMENT_NUMBER_CLEANED.PK_NUMBER
 
         LEFT JOIN RESIDENTIAL_UNITS_CLEANED 
             ON NYC_SALES_WITH_PK_NUMBER.PK_NUMBER = RESIDENTIAL_UNITS_CLEANED.PK_NUMBER
