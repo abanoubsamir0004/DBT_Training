@@ -28,6 +28,7 @@ The goal of this project is to design a star schema using dbt for a dataset sour
         - [Query 9](#query_9)
         - [Query 10](#query_10)
         - [Query 11](#query_11)
+5. [Most Commen Data Issues](#most-commen-data-issues)
 
 # 1- Data Introduction
 
@@ -122,7 +123,7 @@ WHERE DATE_YEAR != 2016;
 
 ### 1.1- STG_ABANOUB_NYC_SALES_CLEANED
 
-In the Staging folder, the `STG_ABANOUB_NYC_SALES_CLEANED` model focuses on cleaning the source data. The Common Table Expressions (CTEs) involved in this process include:
+In the Staging folder, the `STG_ABANOUB_NYC_SALES_CLEANED` model focuses on cleaning the source data. The (CTEs) involved in this process include:
 
 1. **NYC_SALES_WITH_PK_NUMBER:**
     - Assigns a unique primary key (PK_NUMBER) to each row in the source data from STG_ABANOUB_NYC_SALES_CLEANED.
@@ -231,29 +232,321 @@ The final query for this model performs a join with the mentioned dimension tabl
 
 ## 3- Queries
 
-### 3.1- Query 1
+### 3.1 - Query 1
+
+### Calculate the Average Sale Price per Borough
+
+This query aims to calculate the average sale price per borough by utilizing two (CTEs) for improved readability and organization.
+
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. AVG_SALE_PRICE_PER_BOROUGH
+   - Calculates the average sale price for each borough.
+   - Joins the "FACT_SALES" CTE with the 'STG_ABANOUB_DIM_LOCATION' table on the common attribute 'LOCATION_ID'.
+   - Groups the results by borough.
+   - Orders the result set in ascending order based on borough names.
+
+### Final Output:
+   - The "AVG_SALE_PRICE_PER_BOROUGH" CTE extracts borough information and computes the average sale price, providing a clear and organized approach. The final output includes distinct boroughs and their corresponding average sale prices, ordered in ascending order based on borough names.
 
 ### 3.2- Query 2
+### Find the Neighborhood with the Most Total Units
+
+This query is designed to identify the neighborhood with the highest total number of units. The logic is organized using three (CTEs) to enhance clarity and structure the code.
+
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_LOCATION
+   - Extracts data from the 'STG_ABANOUB_DIM_LOCATION' table.
+
+#### 3. TOTAL_UNITS_BY_NEIGHBORHOOD
+   - Calculates the total number of units for each neighborhood by summing up the 'TOTAL_UNITS' column from the "FACT_SALES" CTE.
+   - Uses an INNER JOIN with the "DIM_LOCATION" CTE on the common attribute 'LOCATION_ID' to associate sales data with neighborhood information.
+   - Filters out records where the 'TOTAL_UNITS' value is NULL.
+   - Groups the results by neighborhood.
+
+### Final Output:
+   - The final SELECT statement retrieves all columns from the "TOTAL_UNITS_BY_NEIGHBORHOOD" CTE, orders the result set in descending order based on the 'TOTAL_UNITS' column, and uses the LIMIT 1 clause to obtain only the top row representing the neighborhood with the highest total number of units.
 
 ### 3.3- Query 3
+### Identify the Building Class Category with the Highest Average Land Square Feet
 
-### 3.4- Query 4
+This query is designed to identify the building class category with the highest average land square feet. The logic is organized using three (CTEs) for improved clarity and structure.
 
-### 3.5- Query 5
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_PROPERTY_AT_PRESENT
+   - Extracts data from the 'STG_ABANOUB_DIM_PROPERTY_AT_PRESENT' table.
+
+#### 3. AVG_LAND_SQUARE_FEET_BY_BUILDING_CLASS
+   - Calculates the average land square feet for each building class category.
+   - Joins the "FACT_SALES" CTE with the 'DIM_PROPERTY_AT_PRESENT' table on the common attribute 'PROPERTY_AT_PRESENT_ID.'
+   - Filters out records where the 'LAND_SQUARE_FEET' value is NULL.
+   - Groups the results by building class category.
+
+### Final output:
+   - The final SELECT statement retrieves all columns from the "AVG_LAND_SQUARE_FEET_BY_BUILDING_CLASS" CTE, orders the result set in descending order based on the 'AVERAGE_LAND_SQUARE_FEET' column, and uses the LIMIT 1 clause to obtain only the top row representing the building class category with the highest average land square feet.
+
+### Final Output:
+### Count the Number of Buildings by Different Dimensions
+
+This query is designed to count the number of buildings based on various dimensions, considering each unique building by retrieving distinct rows using the combination of block and lot along with the location dimension. The logic is organized using multiple (CTEs) to capture building counts for different dimensions.
+
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_LOCATION
+   - Extracts data from the 'STG_ABANOUB_DIM_LOCATION' table.
+
+#### 3. UNIQUE_BUILDINGS
+   - Captures distinct combinations of borough, neighborhood, tax block, and tax lot to represent unique buildings.
+   - Uses an INNER JOIN with the "DIM_LOCATION" CTE on the common attribute 'LOCATION_ID.'
+
+#### 4. COUNT_DIFF_BUILDING_PER_BOROUGH_NAME
+   - Counts the number of buildings based on the 'BOROUGH_NAME' dimension.
+   - Groups by 'BOROUGH_NAME' and calculates the building count.
+
+#### 5. COUNT_DIFF_BUILDING_PER_NEIGHBORHOOD
+   - Counts the number of buildings based on the 'NEIGHBORHOOD' dimension.
+   - Groups by 'BOROUGH_NAME' and 'NEIGHBORHOOD' and calculates the building count.
+
+#### 6. COUNT_DIFF_BUILDING_PER_TAX_BLOCK
+   - Counts the number of buildings based on the 'TAX_BLOCK' dimension.
+   - Groups by 'BOROUGH_NAME,' 'NEIGHBORHOOD,' and 'TAX_BLOCK' and calculates the building count.
+
+#### 7. FINAL
+   - Combines the building counts from different dimensions using UNION.
+
+### Final output:
+  - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the building counts across different dimensions. The result set is ordered by dimension, borough name, neighborhood, and tax block for clarity.
+
+### Final Output:
+### Calculate the Total Sale Price Over Time by Different Date Parts
+
+This query aims to calculate the total sale price over time, categorized by different date parts, namely 'YEAR,' 'MONTH,' and 'QUARTER.' The logic is organized using (CTEs) to capture the total sale price for each date part.
+
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_SALES_DATE
+   - Extracts data from the 'STG_ABANOUB_DIM_SALES_DATE' table.
+
+#### 3. TOTAL_SALE_PRICE_BY_DATE_PARTS_PER_YEAR
+   - Calculates the total sale price grouped by 'YEAR.'
+   - Groups by 'SALE_YEAR' and calculates the total sale price.
+
+#### 4. TOTAL_SALE_PRICE_BY_DATE_PARTS_PER_MONTH
+   - Calculates the total sale price grouped by 'YEAR' and 'MONTH.'
+   - Groups by 'SALE_YEAR' and 'SALE_MONTH' and calculates the total sale price.
+
+#### 5. TOTAL_SALE_PRICE_BY_DATE_PARTS_PER_QUARTER
+   - Calculates the total sale price grouped by 'YEAR' and 'QUARTER.'
+   - Groups by 'SALE_YEAR' and 'SALE_QUARTER' and calculates the total sale price.
+
+#### 6. FINAL
+   - Combines the total sale price results from different date parts using UNION ALL.
+   - Converts numeric quarter values to human-readable quarter names.
+
+### Final Output:
+   - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the total sale price over time by different date parts. The result set is ordered by dimension, sale year, sale month, and sale quarter for clarity.
 
 ### 3.6- Query 6
+### Group the Data by Tax Class at Present and Tax Class at Time of Sale and Compare the Average Sale Price for Each Combination
+
+This query is designed to group the data by tax class at present and tax class at the time of sale, then compare the average sale price for each combination. The logic is structured using (CTEs) to calculate average sale prices for both tax class dimensions and perform a comparison.
+
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_PROPERTY_AT_PRESENT
+   - Extracts data from the 'STG_ABANOUB_DIM_PROPERTY_AT_PRESENT' table.
+
+#### 3. DIM_PROPERTY_AT_SALE
+   - Extracts data from the 'STG_ABANOUB_DIM_PROPERTY_AT_SALE' table.
+
+#### 4. TAX_CLASS_AT_PRESENT_AVERAGE_SALE_PRICE
+   - Calculates the average sale price for each tax class at present.
+   - Filters out records where 'TAX_CLASS_AT_PRESENT' is 'UNKNOWN.'
+   - Groups by 'TAX_CLASS_AT_PRESENT' and calculates the average sale price.
+
+#### 5. TAX_CLASS_AT_SALE_AVERAGE_SALE_PRICE
+   - Calculates the average sale price for each tax class at the time of sale.
+   - Groups by 'TAX_CLASS_AT_TIME_OF_SALE' and calculates the average sale price.
+
+#### 6. FINAL
+   - Combines the results from both tax class dimensions using an INNER JOIN.
+   - Adds a comparison column indicating which tax class has a higher average sale price.
+
+### Final Output:
+   - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the average sale prices for each tax class combination and their comparison. The result set is ordered by tax class at present for clarity.
 
 ### 3.7- Query 7
+### Identify the Top 5 Most Expensive Buildings Based on Sale Price
+
+This query is designed to identify the top 5 most expensive buildings based on the sale price. The logic is organized using (CTEs) to capture distinct combinations of borough, neighborhood, tax block, tax lot, and sale price, then rank and select the top 5 based on the maximum sale price.
+
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_LOCATION
+   - Extracts data from the 'STG_ABANOUB_DIM_LOCATION' table.
+
+#### 3. UNIQUE_BUILDINGS
+   - Captures distinct combinations of borough, neighborhood, tax block, tax lot, and sale price.
+   - Uses an INNER JOIN with the "DIM_LOCATION" CTE on the common attribute 'LOCATION_ID.'
+
+#### 4. TOP_5_EXPENSIVE_BUILDINGS
+   - Selects the top 5 most expensive buildings based on the maximum sale price.
+   - Filters out records where sale price is 0 or NULL.
+   - Groups by borough, neighborhood, tax block, and tax lot, and orders the result set by sale price in descending order.
+   - Limits the result set to the top 5 records.
+
+### Final Output:
+   - The final SELECT statement retrieves all columns from the "TOP_5_EXPENSIVE_BUILDINGS" CTE, providing details on the top 5 most expensive buildings based on sale price.
 
 ### 3.8- Query 8
+### Use a Window Function to Calculate the Running Total of Sales Price
+
+This query utilizes a window function to calculate the running total of sales price over time. The logic is structured using (CTEs) to capture distinct combinations of sale year and month, then apply the window function to calculate the running total of sales price.
+
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_SALES_DATE
+   - Extracts data from the 'STG_ABANOUB_DIM_SALES_DATE' table.
+
+#### 3. RUNNING_SALES_PRICE_TOTAL
+   - Captures distinct combinations of sale year and month.
+   - Applies a window function using the SUM() function over the ordered sale year and month to calculate the running total of sales price.
+
+### Final Output:
+  - The final SELECT statement retrieves all columns from the "RUNNING_SALES_PRICE_TOTAL" CTE, providing a comprehensive view of the running total of sales price over time. The result set is ordered by sale year and month for clarity.
 
 ### 3.9- Query 9
+### Create a New Column with the Difference in Years Between Sale Date and Year Built, and Analyze the Distribution of Sale Price
+
+This query is designed to create a new column representing the difference in years between the sale date and the year a property was built. It then groups the data by this new column and analyzes the distribution of sale prices, including various statistical measures.
+
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_PROPERTY_AT_SALE
+   - Extracts data from the 'STG_ABANOUB_DIM_PROPERTY_AT_SALE' table.
+
+#### 3. DIM_SALES_DATE
+   - Extracts data from the 'STG_ABANOUB_DIM_SALES_DATE' table.
+
+#### 4. SALES_WITH_AGE_DIFF
+   - Calculates the difference in years between sale date and year built for each property.
+   - Filters out records with NULL or specific outlier values in the 'YEAR_BUILT' column and records with a sale price of 0 or NULL.
+
+#### 5. FINAL
+   - Groups the data by the calculated age difference.
+   - Calculates various statistical measures for the distribution of sale prices, including count, average, minimum, maximum, quartiles (Q1, Q3), and median.
+
+### Final Output:
+   - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the distribution of sale prices based on the difference in years between sale date and year built.
 
 ### 3.10- Query 10
+### Identify Buildings Sold Multiple Times and Analyze Sale Price Changes Over Time
+
+This query aims to identify buildings that have been sold multiple times and analyze the changes in sale prices over those transactions. The logic is structured using (CTEs) to identify unique buildings sold multiple times and then utilizes window functions to compare current and previous sale prices.
+
+### Common Table Expressions (CTEs):
+
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_LOCATION
+   - Extracts data from the 'STG_ABANOUB_DIM_LOCATION' table.
+
+#### 3. DIM_SALES_DATE
+   - Extracts data from the 'STG_ABANOUB_DIM_SALES_DATE' table.
+
+#### 4. UNIQUE_BUILDINGS_SOLDED_MULTIPLE_TIME
+   - Counts buildings that have been sold multiple times.
+   - Groups by borough, neighborhood, tax block, and tax lot.
+   - Filters out records with sale prices equal to 0 or NULL.
+   - Filters only buildings with more than one sale transaction.
+
+#### 5. FINAL
+   - Joins the identified buildings with multiple sales with the sales data.
+   - Utilizes the LAG() window function to retrieve the previous sale price for each transaction.
+   - Orders the result set for better analysis.
+
+### Final Output:
+   - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing details on buildings sold multiple times and the corresponding sale prices over different transactions.
 
 ### 3.11- Query 11
+### Determine Building Age Category Based on Year Built and Analyze the Relationship Between Building Age and Sale Price
 
+This query is designed to determine the building age category based on the year built and then analyze the relationship between building age and sale price. The logic is organized using (CTEs) to calculate the building age category and then aggregate and analyze sales data based on this categorization.
 
+### Common Table Expressions (CTEs):
 
+#### 1. FACT_SALES
+   - Retrieves data from the 'ABANOUB_FACT_SALES' table.
+
+#### 2. DIM_PROPERTY_AT_SALE
+   - Extracts data from the 'STG_ABANOUB_DIM_PROPERTY_AT_SALE' table.
+
+#### 3. DIM_SALES_DATE
+   - Extracts data from the 'STG_ABANOUB_DIM_SALES_DATE' table.
+
+#### 4. BUILDING_AGE_CATEGORY
+   - Calculates the building age based on the year built and sale year.
+   - Excludes records with specific outlier values in the 'YEAR_BUILT' column.
+   - Excludes records with NULL values in the 'YEAR_BUILT' column.
+
+#### 5. FINAL
+   - Groups the data by sale year, year built, and building age.
+   - Calculates various statistical measures for the distribution of sale prices, including count, minimum, maximum, and average.
+
+### Final Output:
+   - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the relationship between building age and sale price over different years.
+
+# 5- Most Common Data Issues
+
+1. **Easement" Column:**
+   - Contains all values as null or empty strings.
+
+2. **Sale Date" Column:**
+   - Year values appear as '0017' and '0018' instead of '2017' and '2018'.
+
+3. **Sale Price" Column:**
+   - Contains null values, zeros, and the '-' symbol.
+
+4. **Tax Class at Present" Column:**
+   - Some values have subclasses like 1A, 2B, 3C, 4B; it should be 1, 2, 3, or 4.
+
+5. **Apartment Number" Column:**
+   - Most data is null, and the address column has some apartment numbers after a comma in its string.
+
+6. **Numeric Columns:**
+   - Columns like "Residential Units," "Commercial Units," "Total Units," "Land Square Feet," "Gross Square Feet" have values of zeros, nulls, and the '-' symbol. These columns need to be cast to integer type.
+
+7. **Year Built Column:**
+   - Contains values like '1111' (not reliable) and '2019' (data sales according to 2016 to 2018 only). Ensure accurate data within the specified range.
 ---
 
