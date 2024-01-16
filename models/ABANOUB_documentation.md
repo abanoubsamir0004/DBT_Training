@@ -29,7 +29,6 @@ The goal of this project is to design a star schema using dbt for a dataset sour
         - [Query 10](#query_10)
         - [Query 11](#query_11)
 
-
 # 1- Data Introduction
 
 ### Source: AWS S3 Bucket - New York City Sales
