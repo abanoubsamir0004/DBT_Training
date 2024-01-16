@@ -1,3 +1,4 @@
+{# Use_a_window_function_to_calculate_the_running_total_of_Sales_price.#}
 
 WITH 
 

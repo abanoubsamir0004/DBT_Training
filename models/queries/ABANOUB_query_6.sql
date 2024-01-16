@@ -1,3 +1,5 @@
+{# Group the data by tax class at present and tax class at time of sale and compare the average sale price for each combination.#}
+
 WITH 
 
     FACT_SALES AS (

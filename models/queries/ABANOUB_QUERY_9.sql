@@ -1,3 +1,5 @@
+{# Create a new column with the difference years between sale date year built. Group the data by this new column and analyze the distribution of sale price.#}
+
 WITH 
    
     FACT_SALES AS (
