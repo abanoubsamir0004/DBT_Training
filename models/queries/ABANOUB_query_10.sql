@@ -1,4 +1,3 @@
-{# Implement a logic to find buildings sold multiple times and compare their sale price across each transaction.#}
 WITH 
 
     FACT_SALES AS (
@@ -36,6 +35,7 @@ WITH
 
     FINAL AS (
         SELECT 
+            DISTINCT
             UBSMT.*,
             D.SALE_DATE,
             F.SALE_PRICE AS CURRENT_SALE_PRICE,
@@ -46,18 +46,25 @@ WITH
             UNIQUE_BUILDINGS_SOLDED_MULITPLE_TIME UBSMT
         JOIN 
             FACT_SALES F 
-                ON UBSMT.TAX_BLOCK = F.TAX_BLOCK AND UBSMT.TAX_LOT = F.TAX_LOT
+                ON UBSMT.TAX_BLOCK = F.TAX_BLOCK 
+                AND UBSMT.TAX_LOT = F.TAX_LOT
+                
         JOIN 
             DIM_LOCATION L 
                 ON F.LOCATION_ID = L.LOCATION_ID
+                AND UBSMT.BOROUGH_NAME = L.BOROUGH_NAME
+                AND UBSMT.NEIGHBORHOOD = L.NEIGHBORHOOD
+
         JOIN DIM_SALES_DATE D 
             ON F.SALES_DATE_ID = D.SALES_DATE_ID
 
         WHERE 
             F.SALE_PRICE != 0 AND F.SALE_PRICE IS NOT NULL
         ORDER BY 
-            UBSMT.BOROUGH_NAME, UBSMT.NEIGHBORHOOD, UBSMT.TAX_BLOCK, UBSMT.TAX_LOT, D.SALE_DATE  ASC
+            UBSMT.BOROUGH_NAME, UBSMT.NEIGHBORHOOD, UBSMT.TAX_BLOCK, UBSMT.TAX_LOT, D.SALE_DATE
     )
 
 SELECT * 
 FROM FINAL
+
+
