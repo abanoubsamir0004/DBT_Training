@@ -15,8 +15,8 @@ WITH
         
         L.BOROUGH_NAME,
         L.NEIGHBORHOOD, 
-        F.TAX_BLOCK, 
-        F.TAX_LOT
+        L.TAX_BLOCK, 
+        L.TAX_LOT
 
         FROM FACT_SALES F
         INNER JOIN DIM_LOCATION L

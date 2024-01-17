@@ -16,8 +16,8 @@ WITH
         
         L.BOROUGH_NAME,
         L.NEIGHBORHOOD, 
-        F.TAX_BLOCK, 
-        F.TAX_LOT,
+        L.TAX_BLOCK, 
+        L.TAX_LOT,
         F.SALE_PRICE
 
         FROM FACT_SALES F
@@ -43,4 +43,4 @@ WITH
     )
 
 SELECT * 
-FROM TOP_5_EXPENSIVE_BUILDINGS 
+FROM TOP_5_EXPENSIVE_BUILDINGS

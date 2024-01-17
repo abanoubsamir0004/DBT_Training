@@ -309,9 +309,9 @@ with
 
             BOROUGH,
 
-            BOROUGH_NAME,
+            TRIM(BOROUGH_NAME) AS BOROUGH_NAME,
 
-            NEIGHBORHOOD,
+            TRIM(NEIGHBORHOOD) AS NEIGHBORHOOD ,
 
             BUILDING_CLASS_CATEGORY,
 
