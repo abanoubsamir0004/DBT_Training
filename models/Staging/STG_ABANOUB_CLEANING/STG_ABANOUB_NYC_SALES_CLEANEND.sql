@@ -113,47 +113,16 @@ with
 
 
     RESIDENTIAL_UNITS_CAST AS (
-        SELECT 
-            
-            PK_NUMBER,
-            CASE
-                WHEN TRIM(RESIDENTIAL_UNITS) LIKE '-'
-                    THEN NULL
-                ELSE CAST(REPLACE(RESIDENTIAL_UNITS, ',', '') AS INT)
-            END AS RESIDENTIAL_UNITS
-
-        FROM NYC_SALES_WITH_PK_NUMBER
+        {{ column_cast_transform('RESIDENTIAL_UNITS', 'PK_NUMBER', 'NYC_SALES_WITH_PK_NUMBER') }}
     ),
 
     COMMERCIAL_UNITS_CAST AS (
-        SELECT 
-            
-            PK_NUMBER,
-
-            -- Remove all values '-' to NULL  "COMMERCIAL_UNITS" column and cast all COMMERCIAL_UNITS to INT datatype
-            CASE
-                WHEN TRIM(COMMERCIAL_UNITS) LIKE '-'
-                    THEN NULL
-                ELSE CAST(REPLACE(COMMERCIAL_UNITS, ',', '') AS INT)
-            END AS COMMERCIAL_UNITS
-
-        FROM NYC_SALES_WITH_PK_NUMBER
+        {{ column_cast_transform('COMMERCIAL_UNITS', 'PK_NUMBER', 'NYC_SALES_WITH_PK_NUMBER') }}
     ),
     
     TOTAL_UNITS_CAST AS (
-        SELECT 
-            
-            PK_NUMBER,
-            -- Remove all values '-' to 0  "TOTAL_UNITS" column and cast all TOTAL_UNITS to INT datatype
-            CASE
-                WHEN TRIM(TOTAL_UNITS) LIKE '-'
-                    THEN NULL
-                ELSE CAST(REPLACE(TOTAL_UNITS, ',', '') AS INT)
-            END AS TOTAL_UNITS
-
-        FROM NYC_SALES_WITH_PK_NUMBER        
+        {{ column_cast_transform('TOTAL_UNITS', 'PK_NUMBER', 'NYC_SALES_WITH_PK_NUMBER') }}
     ),
-
 
     RESIDENTIAL_UNITS_CLEANED AS (
         SELECT 
@@ -221,37 +190,13 @@ with
                 ON NYC_SALES_WITH_PK_NUMBER.PK_NUMBER = RESIDENTIAL_UNITS_CLEANED.PK_NUMBER
             
     ),
-
+    
     LAND_SQUARE_FEET_CLEANED AS (
-         SELECT 
-            
-            PK_NUMBER,
-            -- Remove all values '-' to NULL "LAND_SQUARE_FEET" column and cast all LAND_SQUARE_FEET to INT datatype
-            -- NOTE: There are 29033 rows with a value of zero.
-
-            CASE
-                WHEN TRIM(LAND_SQUARE_FEET) LIKE '-' 
-                    THEN NULL
-                ELSE CAST(REPLACE(LAND_SQUARE_FEET, ',', '') AS INT)
-            END AS LAND_SQUARE_FEET
-
-        FROM NYC_SALES_WITH_PK_NUMBER       
+        {{ column_cast_transform('LAND_SQUARE_FEET', 'PK_NUMBER', 'NYC_SALES_WITH_PK_NUMBER') }}
     ),
 
     GROSS_SQUARE_FEET_CLEANED AS (
-        SELECT 
-            
-            PK_NUMBER,
-            -- Remove all values '-' to 0  "GROSS_SQUARE_FEET" column and cast all GROSS_SQUARE_FEET to INT datatype
-            -- NOTE: There are 21542 rows with a value of zero.
-
-            CASE
-                WHEN TRIM(GROSS_SQUARE_FEET) LIKE '-' 
-                    THEN NULL
-                ELSE CAST(REPLACE(GROSS_SQUARE_FEET, ',', '') AS INT)
-            END AS GROSS_SQUARE_FEET
-
-        FROM NYC_SALES_WITH_PK_NUMBER        
+        {{ column_cast_transform('GROSS_SQUARE_FEET', 'PK_NUMBER', 'NYC_SALES_WITH_PK_NUMBER') }}
     ),
 
     YEAR_BUILT_CLEANED AS (
