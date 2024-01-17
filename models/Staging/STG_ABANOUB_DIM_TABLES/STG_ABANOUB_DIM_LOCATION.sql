@@ -14,18 +14,14 @@ WITH
     DIM_LOCATION AS (
         SELECT 
             DISTINCT 
-            CONCAT(
-                BOROUGH, 
-                '#', 
-                TRIM(NEIGHBORHOOD), 
-                '#',
-                COALESCE(CAST(ZIP_CODE AS VARCHAR), 'NULL')
-            )::VARCHAR AS LOCATION_ID,
+            DENSE_RANK () OVER (
+                ORDER BY BOROUGH, BOROUGH_NAME, NEIGHBORHOOD, ZIP_CODE,TAX_BLOCK,TAX_LOT) AS LOCATION_ID,
             BOROUGH,
             BOROUGH_NAME,
-            TRIM(NEIGHBORHOOD) AS NEIGHBORHOOD,
-            ZIP_CODE
-            
+            NEIGHBORHOOD,
+            ZIP_CODE,
+            TAX_BLOCK,
+            TAX_LOT
         FROM NYC_SALES_CLEANEND
     )
 
