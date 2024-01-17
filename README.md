@@ -121,7 +121,7 @@ WHERE DATE_YEAR != 2016;
 
  This image  offers a snapshot of the designed star schema, showcasing the relationships between fact and dimension tables.
 
-![Star Schema](https://github.com/abanoubsamir0004/dbt_test/assets/153556384/4a8bab4b-1479-4ad2-a1b2-e21e2c8d261d)
+![Star Schema](https://github.com/abanoubsamir0004/dbt_test/assets/153556384/162d6aa7-5a97-44cb-bb3c-055e40c39a95)
 
 # 4- dbt Models <a name="dbt-models"></a>
 
@@ -169,7 +169,7 @@ In the Staging folder, the `STG_ABANOUB_NYC_SALES_CLEANED` model focuses on clea
 In the Staging folder, the `STG_ABANOUB_DIM_LOCATION` model creates a dimension table named DIM_LOCATION by extracting unique location-related information from the STG_ABANOUB_NYC_SALES_CLEANEND source.
 
 **Description:**
-The `DIM_LOCATION` dimension table is designed to capture location-related details extracted from the STG_ABANOUB_NYC_SALES_CLEANEND source. The table includes a unique identifier, `LOCATION_ID`, which combines borough, neighborhood, and ZIP code information for a distinct representation of each location.
+The `DIM_LOCATION` dimension table is designed to capture location-related details extracted from the STG_ABANOUB_NYC_SALES_CLEANEND source. The table includes a unique identifier, `LOCATION_ID`, assigned through dense ranking based borough, neighborhood, ZIP code, lot and block information for a distinct representation of each location.
 
 ### 1.3- STG_ABANOUB_DIM_PROPERTY_AT_PRESENT <a name="stg_abanoub_dim_property_at_present"></a>
 
@@ -226,8 +226,6 @@ The fact table includes essential measures derived from the cleaned data in `STG
 
 **Degenerated Dimensions:**
 Additionally, the fact table includes degenerated dimensions like:
-- `TAX_BLOCK`
-- `TAX_LOT`
 - `ADDRESS`
 - `APARTMENT_NUMBER`
 
