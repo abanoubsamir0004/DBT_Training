@@ -19,7 +19,7 @@ The goal of this project is to design a star schema using dbt for a dataset sour
         - [STG_ABANOUB_DIM_PROPERTY_AT_SALE](#stg_abanoub_dim_property_at_sale)
         - [STG_ABANOUB_DIM_SALES_DATE](#stg_abanoub_dim_sales_date)
     2. [Marts](#marts)
-        - [ABANOUB_FACT_SALES](#-abanoub_fact_sales)
+        - [ABANOUB_FACT_SALES](#abanoub_fact_sales)
     3. [Queries](#queries)
         - [Query 1](#query-1)
         - [Query 2](#query-2)
@@ -164,37 +164,37 @@ In the Staging folder, the `STG_ABANOUB_NYC_SALES_CLEANED` model focuses on clea
 16. **FINAL:**
     - Joins all cleaned and processed columns from previous CTEs and generates the final dataset for analysis.
 
-### 1.2- STG_ABANOUB_DIM_LOCATION
+### 1.2- STG_ABANOUB_DIM_LOCATION  <a name="stg_abanoub_dim_location"></a>
 
 In the Staging folder, the `STG_ABANOUB_DIM_LOCATION` model creates a dimension table named DIM_LOCATION by extracting unique location-related information from the STG_ABANOUB_NYC_SALES_CLEANEND source.
 
 **Description:**
 The `DIM_LOCATION` dimension table is designed to capture location-related details extracted from the STG_ABANOUB_NYC_SALES_CLEANEND source. The table includes a unique identifier, `LOCATION_ID`, which combines borough, neighborhood, and ZIP code information for a distinct representation of each location.
 
-### 1.3- STG_ABANOUB_DIM_PROPERTY_AT_PRESENT
+### 1.3- STG_ABANOUB_DIM_PROPERTY_AT_PRESENT <a name="stg_abanoub_dim_property_at_present"></a>
 
 In the Staging folder, the `STG_ABANOUB_DIM_PROPERTY_AT_PRESENT` model creates a dimension table named DIM_PROPERTY_AT_PRESENT by capturing distinct property-related attributes from the STG_ABANOUB_NYC_SALES_CLEANEND source.
 
 **Description:**
 The `DIM_PROPERTY_AT_PRESENT` dimension table focuses on extracting and organizing distinct property-related attributes from the STG_ABANOUB_NYC_SALES_CLEANEND source. It includes a unique identifier, `PROPERTY_AT_PRESENT_ID`, assigned through dense ranking based on building class category, building class at present, tax class at present, and tax subclass at present.
 
-### 1.4- STG_ABANOUB_DIM_PROPERTY_AT_SALE
+### 1.4- STG_ABANOUB_DIM_PROPERTY_AT_SALE <a name="stg_abanoub_dim_property_at_sale"></a>
 
 In the Staging folder, the `STG_ABANOUB_DIM_PROPERTY_AT_SALE` model creates a dimension table named DIM_PROPERTY_AT_SALE by extracting unique property-related details from the STG_ABANOUB_NYC_SALES_CLEANEND source.
 
 **Description:**
 The `DIM_PROPERTY_AT_SALE` dimension table is designed to capture unique property-related details from the STG_ABANOUB_NYC_SALES_CLEANEND source. It includes a unique identifier, `PROPERTY_AT_SALE_ID`, generated through dense ranking based on building class at the time of sale, tax class at the time of sale, and year built.
 
-### 1.5- STG_ABANOUB_DIM_SALES_DATE
+### 1.5- STG_ABANOUB_DIM_SALES_DATE  <a name="stg_abanoub_dim_sales_date"></a>
 
 In the Staging folder, the `STG_ABANOUB_DIM_SALES_DATE` model creates a dimension table named DIM_SALE_DATE by extracting and formatting date-related details from the STG_ABANOUB_NYC_SALES_CLEANEND source.
 
 **Description:**
 The `DIM_SALE_DATE` dimension table focuses on extracting and formatting date-related details from the STG_ABANOUB_NYC_SALES_CLEANEND source. It includes a unique identifier, `SALES_DATE_ID`, representing the sale date in YYYYMMDD format.
 
-## 2- Marts
+## 2- Marts  <a name="marts"></a>
 
-### ABANOUB_FACT_SALES
+### ABANOUB_FACT_SALES <a name="abanoub_fact_sales"></a>
 
 In the Marts folder, the `ABANOUB_FACT_SALES` model creates a fact table that consolidates information by joining with several dimension tables. The dimensions include:
 
@@ -238,7 +238,7 @@ The final query for this model performs a join with the mentioned dimension tabl
 
 ## 3- Queries
 
-### 3.1 - Query 1
+### 3.1 - Query 1 <a name="query-1"></a>
 
 ### Calculate the Average Sale Price per Borough
 
@@ -258,7 +258,7 @@ This query aims to calculate the average sale price per borough by utilizing two
 ### Final Output:
    - The "AVG_SALE_PRICE_PER_BOROUGH" CTE extracts borough information and computes the average sale price, providing a clear and organized approach. The final output includes distinct boroughs and their corresponding average sale prices, ordered in ascending order based on borough names.
 
-### 3.2- Query 2
+### 3.2- Query 2  <a name="query-2"></a>
 ### Find the Neighborhood with the Most Total Units
 
 This query is designed to identify the neighborhood with the highest total number of units. The logic is organized using three (CTEs) to enhance clarity and structure the code.
@@ -280,7 +280,7 @@ This query is designed to identify the neighborhood with the highest total numbe
 ### Final Output:
    - The final SELECT statement retrieves all columns from the "TOTAL_UNITS_BY_NEIGHBORHOOD" CTE, orders the result set in descending order based on the 'TOTAL_UNITS' column, and uses the LIMIT 1 clause to obtain only the top row representing the neighborhood with the highest total number of units.
 
-### 3.3- Query 3
+### 3.3- Query 3  <a name="query-"></a>
 ### Identify the Building Class Category with the Highest Average Land Square Feet
 
 This query is designed to identify the building class category with the highest average land square feet. The logic is organized using three (CTEs) for improved clarity and structure.
@@ -302,7 +302,7 @@ This query is designed to identify the building class category with the highest 
 ### Final output:
    - The final SELECT statement retrieves all columns from the "AVG_LAND_SQUARE_FEET_BY_BUILDING_CLASS" CTE, orders the result set in descending order based on the 'AVERAGE_LAND_SQUARE_FEET' column, and uses the LIMIT 1 clause to obtain only the top row representing the building class category with the highest average land square feet.
 
-### Final Output:
+### 3.4- Query 4  <a name="query-4"></a>
 ### Count the Number of Buildings by Different Dimensions
 
 This query is designed to count the number of buildings based on various dimensions, considering each unique building by retrieving distinct rows using the combination of block and lot along with the location dimension. The logic is organized using multiple (CTEs) to capture building counts for different dimensions.
@@ -337,7 +337,7 @@ This query is designed to count the number of buildings based on various dimensi
 ### Final output:
   - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the building counts across different dimensions. The result set is ordered by dimension, borough name, neighborhood, and tax block for clarity.
 
-### Final Output:
+### 3.5- Query 5  <a name="query-5"></a>
 ### Calculate the Total Sale Price Over Time by Different Date Parts
 
 This query aims to calculate the total sale price over time, categorized by different date parts, namely 'YEAR,' 'MONTH,' and 'QUARTER.' The logic is organized using (CTEs) to capture the total sale price for each date part.
@@ -369,7 +369,7 @@ This query aims to calculate the total sale price over time, categorized by diff
 ### Final Output:
    - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the total sale price over time by different date parts. The result set is ordered by dimension, sale year, sale month, and sale quarter for clarity.
 
-### 3.6- Query 6
+### 3.5- Query 6  <a name="query-6"></a>
 ### Group the Data by Tax Class at Present and Tax Class at Time of Sale and Compare the Average Sale Price for Each Combination
 
 This query is designed to group the data by tax class at present and tax class at the time of sale, then compare the average sale price for each combination. The logic is structured using (CTEs) to calculate average sale prices for both tax class dimensions and perform a comparison.
@@ -401,7 +401,7 @@ This query is designed to group the data by tax class at present and tax class a
 ### Final Output:
    - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the average sale prices for each tax class combination and their comparison. The result set is ordered by tax class at present for clarity.
 
-### 3.7- Query 7
+### 3.7- Query 7 <a name="query-7"></a>
 ### Identify the Top 5 Most Expensive Buildings Based on Sale Price
 
 This query is designed to identify the top 5 most expensive buildings based on the sale price. The logic is organized using (CTEs) to capture distinct combinations of borough, neighborhood, tax block, tax lot, and sale price, then rank and select the top 5 based on the maximum sale price.
@@ -427,7 +427,7 @@ This query is designed to identify the top 5 most expensive buildings based on t
 ### Final Output:
    - The final SELECT statement retrieves all columns from the "TOP_5_EXPENSIVE_BUILDINGS" CTE, providing details on the top 5 most expensive buildings based on sale price.
 
-### 3.8- Query 8
+### 3.8- Query 8 <a name="query-8"></a>
 ### Use a Window Function to Calculate the Running Total of Sales Price
 
 This query utilizes a window function to calculate the running total of sales price over time. The logic is structured using (CTEs) to capture distinct combinations of sale year and month, then apply the window function to calculate the running total of sales price.
@@ -447,7 +447,7 @@ This query utilizes a window function to calculate the running total of sales pr
 ### Final Output:
   - The final SELECT statement retrieves all columns from the "RUNNING_SALES_PRICE_TOTAL" CTE, providing a comprehensive view of the running total of sales price over time. The result set is ordered by sale year and month for clarity.
 
-### 3.9- Query 9
+### 3.9- Query 9 <a name="query-9"></a>
 ### Create a New Column with the Difference in Years Between Sale Date and Year Built, and Analyze the Distribution of Sale Price
 
 This query is designed to create a new column representing the difference in years between the sale date and the year a property was built. It then groups the data by this new column and analyzes the distribution of sale prices, including various statistical measures.
@@ -474,7 +474,7 @@ This query is designed to create a new column representing the difference in yea
 ### Final Output:
    - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the distribution of sale prices based on the difference in years between sale date and year built.
 
-### 3.10- Query 10
+### 3.10- Query 10 <a name="query-10"></a>
 ### Identify Buildings Sold Multiple Times and Analyze Sale Price Changes Over Time
 
 This query aims to identify buildings that have been sold multiple times and analyze the changes in sale prices over those transactions. The logic is structured using (CTEs) to identify unique buildings sold multiple times and then utilizes window functions to compare current and previous sale prices.
@@ -504,7 +504,7 @@ This query aims to identify buildings that have been sold multiple times and ana
 ### Final Output:
    - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing details on buildings sold multiple times and the corresponding sale prices over different transactions.
 
-### 3.11- Query 11
+### 3.11- Query 11 <a name="query-11"></a>
 ### Determine Building Age Category Based on Year Built and Analyze the Relationship Between Building Age and Sale Price
 
 This query is designed to determine the building age category based on the year built and then analyze the relationship between building age and sale price. The logic is organized using (CTEs) to calculate the building age category and then aggregate and analyze sales data based on this categorization.
@@ -532,7 +532,7 @@ This query is designed to determine the building age category based on the year 
 ### Final Output:
    - The final SELECT statement retrieves all columns from the "FINAL" CTE, providing a comprehensive view of the relationship between building age and sale price over different years.
 
-# 5- Most Common Data Issues
+# 5- Most Common Data Issues <a name="most-common-data-issues"></a>
 
 1. **Easement" Column:**
    - Contains all values as null or empty strings.
