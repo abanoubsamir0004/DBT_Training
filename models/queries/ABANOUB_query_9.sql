@@ -25,10 +25,10 @@ WITH
         FROM
             FACT_SALES F
        
-        INNER JOIN DIM_PROPERTY_AT_SALE P
+        LEFT JOIN DIM_PROPERTY_AT_SALE P
             ON F.PROPERTY_AT_SALE_ID = P.PROPERTY_AT_SALE_ID
        
-        INNER JOIN DIM_SALES_DATE D
+        LEFT JOIN DIM_SALES_DATE D
             ON F.SALES_DATE_ID = D.SALES_DATE_ID
        
         WHERE 

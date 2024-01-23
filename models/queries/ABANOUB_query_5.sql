@@ -20,7 +20,7 @@ WITH
             SUM(F.SALE_PRICE) AS TOTAL_SALE_PRICE
         FROM
             FACT_SALES F
-        INNER JOIN
+        LEFT JOIN
             DIM_SALES_DATE D ON F.SALES_DATE_ID = D.SALES_DATE_ID
         GROUP BY
             D.SALE_YEAR
@@ -36,7 +36,7 @@ WITH
             SUM(F.SALE_PRICE) AS TOTAL_SALE_PRICE
         FROM
             FACT_SALES F
-        INNER JOIN
+        LEFT JOIN
             DIM_SALES_DATE D ON F.SALES_DATE_ID = D.SALES_DATE_ID
         GROUP BY
             D.SALE_YEAR, D.SALE_MONTH
@@ -53,7 +53,7 @@ WITH
 
         FROM
             FACT_SALES F
-        INNER JOIN
+        LEFT JOIN
             DIM_SALES_DATE D ON F.SALES_DATE_ID = D.SALES_DATE_ID
         GROUP BY
             D.SALE_YEAR, SALE_QUARTER

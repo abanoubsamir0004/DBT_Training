@@ -12,7 +12,7 @@ WITH
             AVG(F.SALE_PRICE) AS AVERAGE_SALE_PRICE
         FROM
             FACT_SALES F
-        INNER JOIN
+        LEFT JOIN
             STG_ABANOUB_DIM_LOCATION L ON F.LOCATION_ID = L.LOCATION_ID
         GROUP BY
             L.BOROUGH
