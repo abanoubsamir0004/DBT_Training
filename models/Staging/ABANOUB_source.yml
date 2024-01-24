@@ -9,7 +9,7 @@ sources:
           - name: NYC_SALES
             description: One record per sales.
 
-    - name: SUPERSTORE
+    - name: SAMPLE_SUPERSTORE
       description: This is a replica of the SUPERSTORE database for our task
       database: RAW
       schema: SAMPLE_SUPERSTORE
