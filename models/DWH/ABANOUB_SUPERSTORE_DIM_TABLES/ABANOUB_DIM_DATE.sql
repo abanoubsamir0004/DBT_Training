@@ -1,3 +1,9 @@
+{{ config(
+  materialized='table',
+  unique_key='date_key',
+  description="This table represents a date dimension."
+) }}
+
 WITH 
 
     DATE_SOURCE AS (
