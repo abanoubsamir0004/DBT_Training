@@ -1,3 +1,9 @@
+{{ config(
+  materialized='table',
+  unique_key='CUSTOMER_KEY',
+  description="This table represents a Customer dimension."
+) }}
+
 WITH 
 
     SOURCE AS (
