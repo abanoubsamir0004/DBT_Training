@@ -8,6 +8,9 @@ WITH
         SELECT 
         
             TO_NUMBER(TO_CHAR(DATE_DAY, 'YYYYMMDD')) AS DATE_KEY,
+
+            DATE_DAY AS FULL_DATE,
+                        
             EXTRACT (YEAR FROM DATE_DAY) AS YEAR ,
 
             LPAD(EXTRACT(MONTH FROM DATE_DAY), 2, '0') AS MONTH,
@@ -25,7 +28,7 @@ WITH
             END AS QUARTER_NAME
         FROM DATE_SOURCE
     ) 
-    
+
 {{ config(
   materialized='table',
   unique_key='date_key',
