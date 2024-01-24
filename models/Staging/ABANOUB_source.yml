@@ -1,11 +1,11 @@
 version: 2
 
 sources:
-    - name: SALES
-      description: This is a replica of the sales database for our task
+    - name: SAMPLE_SUPERSTORE
+      description: This is a replica of the SUPERSTORE database for our task
       database: RAW
-      schema: SALES
+      schema: SAMPLE_SUPERSTORE
       tables:
-          - name: NYC_SALES
+          - name: SUPERSTORE
             description: One record per sales.
 
