@@ -1,9 +1,3 @@
-{{ config(
-  materialized='table',
-  unique_key='CUSTOMER_KEY',
-  description="This table represents a Customer dimension."
-) }}
-
 WITH 
 
     SOURCE AS (
@@ -24,5 +18,11 @@ WITH
 
         FROM SOURCE
     ) 
+
+{{ config(
+  materialized='table',
+  unique_key='CUSTOMER_KEY',
+  description="This table represents a Customer dimension."
+) }}
 
 SELECT * FROM DIM_CUSTOMER

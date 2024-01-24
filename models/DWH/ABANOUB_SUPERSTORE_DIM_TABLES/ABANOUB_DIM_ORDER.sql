@@ -17,4 +17,10 @@ WITH
         FROM SOURCE
     ) 
 
+{{ config(
+  materialized='table',
+  unique_key='ORDER_KEY',
+  description="This table represents unique order data."
+) }}
+
 SELECT * FROM DIM_ORDER

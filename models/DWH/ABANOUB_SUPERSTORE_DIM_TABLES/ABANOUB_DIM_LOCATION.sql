@@ -1,9 +1,3 @@
-{{ config(
-  materialized='table',
-  unique_key='location_sk',
-  description="This table represents unique locations with a surrogate key."
-) }}
-
 WITH 
 
     SOURCE AS (
@@ -34,5 +28,12 @@ WITH
 
         FROM UNIQUE_LOCATION
     ) 
+
+{{ config(
+  materialized='table',
+  unique_key='location_sk',
+  description="This table represents unique locations with a surrogate key."
+) }}
+
 
 SELECT * FROM DIM_LOCATION
