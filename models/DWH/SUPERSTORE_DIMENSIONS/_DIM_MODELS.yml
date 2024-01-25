@@ -8,6 +8,10 @@ models:
         tests:
           - unique
           - not_null
+        constraints:
+          - name: PK_CUSTOMER_KEY
+            type: primary_key
+            columns: [CUSTOMER_KEY]
 
       - name: CUSTOMER_NAME
         description: "Name of the customer"
@@ -36,6 +40,10 @@ models:
         tests:
           - unique
           - not_null
+        constraints:
+          - name: PK_DATE_KEY
+            type: primary_key
+            columns: [DATE_KEY]
 
       - name: FULL_DATE
         description: "Full date"
@@ -79,6 +87,10 @@ models:
         tests:
           - unique
           - not_null
+        constraints:
+          - name: PK_LOCATION_SK
+            type: primary_key
+            columns: [LOCATION_SK]
 
       - name: COUNTRY
         description: "Country of the location"
@@ -112,6 +124,10 @@ models:
         tests:
           - unique
           - not_null
+        constraints:
+          - name: PK_ORDER_KEY
+            type: primary_key
+            columns: [ORDER_KEY]
 
       - name: SHIP_MODE
         description: "Shipping mode for the order"
@@ -130,6 +146,10 @@ models:
         tests:
           - unique
           - not_null
+        constraints:
+          - name: PK_PRODUCT_KEY
+            type: primary_key
+            columns: [PRODUCT_KEY]
 
       - name: PRODUCT_ID
         description: "Natural key for a product"
