@@ -1,4 +1,4 @@
-# Project Introduction
+# SuperStore Project Introduction
 
 The goal of this project is to design a star schema using dbt for a dataset sourced from an Kaggle and loaded into Snowflake. The dataset, centered Superstore sales, will undergo transformations to create an analytical model. This process involves defining fact and dimension tables and implementing necessary transformations in the staging models to facilitate analytical queries.
 
@@ -290,5 +290,5 @@ This fact table provides a consolidated view of sales-related data, enabling in-
 
 # 5- Most Common Data Issues <a name="most-common-data-issues"></a>
 
-1. **Product ID" Column:**
-   - Contains multiple entries with the same 'PRODUCT_ID' but different 'PRODUCT_NAME'.
+1. **"Product ID" Column:**
+   - Contains multiple entries with the same "PRODUCT_ID" but different "PRODUCT_NAME".
