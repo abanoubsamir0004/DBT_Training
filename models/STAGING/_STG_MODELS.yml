@@ -9,6 +9,10 @@ models:
         tests:
           - unique
           - not_null
+        constraints:
+          - name: pk_row_id
+            type: primary_key
+            columns: [ROW_ID]
 
       - name: ORDER_ID
         description: "Order ID"
