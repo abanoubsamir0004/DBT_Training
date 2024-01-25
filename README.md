@@ -1,4 +1,4 @@
-# Project Introduction
+# SuperStore Project Introduction
 
 The goal of this project is to design a star schema using dbt for a dataset sourced from an Kaggle and loaded into Snowflake. The dataset, centered Superstore sales, will undergo transformations to create an analytical model. This process involves defining fact and dimension tables and implementing necessary transformations in the staging models to facilitate analytical queries.
 
