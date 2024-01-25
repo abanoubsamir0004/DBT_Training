@@ -1,0 +1,157 @@
+version: 2
+
+models:
+  - name: DIM_CUSTOMER
+    columns:
+      - name: CUSTOMER_KEY
+        description: "Unique identifier for a customer"
+        tests:
+          - unique
+          - not_null
+
+      - name: CUSTOMER_NAME
+        description: "Name of the customer"
+        tests:
+          - not_null
+
+      - name: SEGMENT
+        description: "Customer segment"
+        tests:
+          - not_null
+
+      - name: POSTAL_CODE
+        description: "Postal code of the customer"
+        tests:
+          - not_null
+          
+    meta:
+      materialized: table
+      unique_key: CUSTOMER_KEY
+      description: "This table represents a Customer dimension."
+
+  - name: DIM_DATE
+    columns:
+      - name: DATE_KEY
+        description: "Unique identifier for a date"
+        tests:
+          - unique
+          - not_null
+
+      - name: FULL_DATE
+        description: "Full date"
+        tests:
+          - not_null
+
+      - name: YEAR
+        description: "Year"
+        tests:
+          - not_null
+
+      - name: MONTH
+        description: "Month"
+        tests:
+          - not_null
+
+      - name: DAY
+        description: "Day"
+        tests:
+          - not_null
+
+      - name: QUARTER
+        description: "Quarter of the year"
+        tests:
+          - not_null
+
+      - name: QUARTER_NAME
+        description: "Quarter name"
+        tests:
+          - not_null
+
+    meta:
+      materialized: table
+      unique_key: DATE_KEY
+      description: "This table represents a date dimension."
+
+  - name: DIM_LOCATION
+    columns:
+      - name: LOCATION_SK
+        description: "Surrogate key for a location"
+        tests:
+          - unique
+          - not_null
+
+      - name: COUNTRY
+        description: "Country of the location"
+        tests:
+          - not_null
+
+      - name: STATE
+        description: "State of the location"
+        tests:
+          - not_null
+
+      - name: CITY
+        description: "City of the location"
+        tests:
+          - not_null
+
+      - name: REGION
+        description: "Region of the location"
+        tests:
+          - not_null
+
+    meta:
+      materialized: table
+      unique_key: LOCATION_SK
+      description: "This table represents unique locations with a surrogate key."
+
+  - name: DIM_ORDER
+    columns:
+      - name: ORDER_KEY
+        description: "Unique identifier for an order"
+        tests:
+          - unique
+          - not_null
+
+      - name: SHIP_MODE
+        description: "Shipping mode for the order"
+        tests:
+          - not_null
+
+    meta:
+      materialized: table
+      unique_key: ORDER_KEY
+      description: "This table represents unique order data."
+
+  - name: DIM_PRODUCT
+    columns:
+      - name: PRODUCT_KEY
+        description: "Surrogate key for a product"
+        tests:
+          - unique
+          - not_null
+
+      - name: PRODUCT_ID
+        description: "Natural key for a product"
+        tests:
+          - not_null
+
+      - name: PRODUCT_NAME
+        description: "Name of the product"
+        tests:
+          - not_null
+
+      - name: CATEGORY
+        description: "Category of the product"
+        tests:
+          - not_null
+
+      - name: SUB_CATEGORY
+        description: "Subcategory of the product"
+        tests:
+          - not_null
+
+    meta:
+      materialized: table
+      unique_key: PRODUCT_KEY
+      description: "This table represents unique product data with ranking based on the number of rows."
