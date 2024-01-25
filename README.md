@@ -114,7 +114,7 @@ A Snowflake Stage, denoted as SUPERSTORE_STAGE, has been established to serve as
 
 # 4- dbt Models <a name="dbt-models"></a>
 
-## 4.1- Staging Models Folder <a name="staging-models"></a>
+## 4.1- Staging Models Folder <a name="staging"></a>
 
 ### 4.1.1 - SUPERSTORE  <a name="superstore"></a>
 
