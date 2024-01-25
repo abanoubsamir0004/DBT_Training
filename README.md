@@ -290,5 +290,5 @@ This fact table provides a consolidated view of sales-related data, enabling in-
 
 # 5- Most Common Data Issues <a name="most-common-data-issues"></a>
 
-1. **Product ID" Column:**
-   - Contains multiple entries with the same 'PRODUCT_ID' but different 'PRODUCT_NAME'.
+1. **"Product ID" Column:**
+   - Contains multiple entries with the same "PRODUCT_ID" but different "PRODUCT_NAME".
