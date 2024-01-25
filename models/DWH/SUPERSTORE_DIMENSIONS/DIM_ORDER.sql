@@ -5,7 +5,7 @@ WITH
         
             *
         
-        FROM {{ ref('ABANOUB_SUPERSTORE') }}
+        FROM {{ ref('SUPERSTORE') }}
     ),
 
     DIM_ORDER AS (
