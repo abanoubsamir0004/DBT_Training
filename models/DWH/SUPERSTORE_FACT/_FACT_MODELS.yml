@@ -9,6 +9,10 @@ models:
           - relationships:
               to: ref('DIM_DATE')
               field: ORDER_DATE_KEY
+        constraints:
+          - name: FK_ORDER_DATE_KEY
+            type: foreign_key
+            columns: [ORDER_DATE_KEY]
 
       - name: SHIP_DATE_KEY
         description: "Date key for the ship date"
@@ -16,6 +20,10 @@ models:
           - relationships:
               to: ref('DIM_DATE')
               field: SHIP_DATE_KEY
+        constraints:
+          - name: FK_SHIP_DATE_KEY
+            type: foreign_key
+            columns: [SHIP_DATE_KEY]
 
       - name: LOCATION_SK
         description: "Surrogate key for the location"
@@ -23,6 +31,10 @@ models:
           - relationships:
               to: ref('DIM_LOCATION')
               field: LOCATION_SK
+        constraints:
+          - name: FK_LOCATION_SK
+            type: foreign_key
+            columns: [LOCATION_SK]
 
       - name: PRODUCT_KEY
         description: "Surrogate key for the product"
@@ -30,6 +42,10 @@ models:
           - relationships:
               to: ref('DIM_PRODUCT')
               field: PRODUCT_KEY
+        constraints:
+          - name: FK_PRODUCT_KEY
+            type: foreign_key
+            columns: [PRODUCT_KEY]
 
       - name: CUSTOMER_KEY
         description: "Surrogate key for the customer"
@@ -37,6 +53,10 @@ models:
           - relationships:
               to: ref('DIM_CUSTOMER')
               field: CUSTOMER_KEY
+        constraints:
+          - name: FK_CUSTOMER_KEY
+            type: foreign_key
+            columns: [CUSTOMER_KEY]
 
       - name: ORDER_KEY
         description: "Surrogate key for the order"
@@ -44,6 +64,10 @@ models:
           - relationships:
               to: ref('DIM_ORDER')
               field: ORDER_KEY
+        constraints:
+          - name: FK_ORDER_KEY
+            type: foreign_key
+            columns: [ORDER_KEY]
 
       - name: SALES
         description: "Sales amount"
