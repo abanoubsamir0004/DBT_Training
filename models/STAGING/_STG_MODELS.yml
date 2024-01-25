@@ -1,0 +1,111 @@
+version: 2
+
+models:
+  - name: SUPERSTORE
+    description: "Source table for Superstore data"
+    columns:
+      - name: ROW_ID
+        description: "Primary key for the source table"
+        tests:
+          - unique
+          - not_null
+
+      - name: ORDER_ID
+        description: "Order ID"
+        tests:
+          - not_null
+
+      - name: ORDER_DATE
+        description: "Order date"
+        tests:
+          - not_null
+
+      - name: SHIP_DATE
+        description: "Ship date"
+        tests:
+          - not_null
+
+      - name: SHIP_MODE
+        description: "Shipping mode"
+        tests:
+          - not_null
+
+      - name: CUSTOMER_ID
+        description: "Customer ID"
+        tests:
+          - not_null
+
+      - name: CUSTOMER_NAME
+        description: "Customer name"
+        tests:
+          - not_null
+
+      - name: SEGMENT
+        description: "Customer segment"
+        tests:
+          - not_null
+
+      - name: COUNTRY
+        description: "Country"
+        tests:
+          - not_null
+
+      - name: CITY
+        description: "City"
+        tests:
+          - not_null
+
+      - name: STATE
+        description: "State"
+        tests:
+          - not_null
+
+      - name: POSTAL_CODE
+        description: "Postal code"
+        tests:
+          - not_null
+
+      - name: REGION
+        description: "Region"
+        tests:
+          - not_null
+
+      - name: PRODUCT_ID
+        description: "Product ID"
+        tests:
+          - not_null
+
+      - name: CATEGORY
+        description: "Product category"
+        tests:
+          - not_null
+
+      - name: SUB_CATEGORY
+        description: "Product sub-category"
+        tests:
+          - not_null
+
+      - name: PRODUCT_NAME
+        description: "Product name"
+        tests:
+          - not_null
+
+      - name: SALES
+        description: "Sales amount"
+        tests:
+          - not_null
+
+      - name: QUANTITY
+        description: "Quantity sold"
+        tests:
+          - not_null
+
+      - name: DISCOUNT
+        description: "Discount applied"
+        tests:
+          - not_null
+
+      - name: PROFIT
+        description: "Profit"
+        tests:
+          - not_null

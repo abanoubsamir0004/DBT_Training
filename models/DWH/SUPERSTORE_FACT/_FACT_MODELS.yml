@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: FACT_SALES
+    columns:
+      - name: ORDER_DATE_KEY
+        description: "Date key for the order date"
+        tests:
+          - relationships:
+              to: ref('DIM_DATE')
+              field: ORDER_DATE_KEY
+
+      - name: SHIP_DATE_KEY
+        description: "Date key for the ship date"
+        tests:
+          - relationships:
+              to: ref('DIM_DATE')
+              field: SHIP_DATE_KEY
+
+      - name: LOCATION_SK
+        description: "Surrogate key for the location"
+        tests:
+          - relationships:
+              to: ref('DIM_LOCATION')
+              field: LOCATION_SK
+
+      - name: PRODUCT_KEY
+        description: "Surrogate key for the product"
+        tests:
+          - relationships:
+              to: ref('DIM_PRODUCT')
+              field: PRODUCT_KEY
+
+      - name: CUSTOMER_KEY
+        description: "Surrogate key for the customer"
+        tests:
+          - relationships:
+              to: ref('DIM_CUSTOMER')
+              field: CUSTOMER_KEY
+
+      - name: ORDER_KEY
+        description: "Surrogate key for the order"
+        tests:
+          - relationships:
+              to: ref('DIM_ORDER')
+              field: ORDER_KEY
+
+      - name: SALES
+        description: "Sales amount"
+        tests:
+          - not_null
+
+      - name: QUANTITY
+        description: "Quantity of products sold"
+        tests:
+          - not_null
+
+      - name: DISCOUNT
+        description: "Discount applied"
+        tests:
+          - not_null
+
+      - name: PROFIT
+        description: "Profit from the sale"
+        tests:
+          - not_null
+
+    meta:
+      materialized: table
+      description: "This table represents a fact table for sales."

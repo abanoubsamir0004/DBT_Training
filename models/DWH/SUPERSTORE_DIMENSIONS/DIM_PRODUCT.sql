@@ -9,7 +9,7 @@ WITH
     SOURCE AS (
         SELECT 
             *
-        FROM {{ ref('ABANOUB_SUPERSTORE') }}
+        FROM {{ ref('SUPERSTORE') }}
     ),
     
     UNIQUE_PRODUCTS AS (
