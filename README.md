@@ -154,6 +154,8 @@ This staging model ensures that the data is cleansed and prepared for subsequent
 
 ## 4.2- DWH Models Folder <a name="dwh-models"></a>
 
+## 4.2.1- SUPERSTORE DIMENSIONS <a name="superstore_dimensions"></a>
+
 ### 4.2.1.1 - DIM_CUSTOMER  <a name="dim_customer"></a>
 
 In the Staging folder, the `DIM_CUSTOMER` model creates a dimension table named DIM_CUSTOMER by extracting unique customer-related information from the SUPERSTORE source.
@@ -247,7 +249,9 @@ The `DIM_PRODUCT` dimension table captures unique product-related details, ensur
 
 This dimension table ensures that all products are represented uniquely, allowing for effective analysis and referencing in analytical queries.
 
-### 4.2.2 - FACT_SALES  <a name="superstore_fact"></a>
+## 4.2.2- SUPERSTORE FACT <a name="superstore_fact"></a>
+
+### 4.2.2.1 - FACT_SALES  <a name="superstore_fact"></a>
 
 The `FACT_SALES` model creates a fact table named FACT_SALES by combining data from various dimension tables and the SUPERSTORE source, facilitating comprehensive analysis of sales-related information.
 
