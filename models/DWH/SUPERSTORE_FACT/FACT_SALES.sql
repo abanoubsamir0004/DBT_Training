@@ -4,14 +4,14 @@ with
 
         SELECT * 
         
-        FROM {{ ref('ABANOUB_SUPERSTORE') }}
+        FROM {{ ref('SUPERSTORE') }}
     ),
 
     DIM_DATE AS (
 
         SELECT * 
         
-        FROM {{ ref('ABANOUB_DIM_DATE') }}
+        FROM {{ ref('DIM_DATE') }}
 
     ),
 
@@ -19,7 +19,7 @@ with
 
         SELECT * 
         
-        FROM {{ ref('ABANOUB_DIM_LOCATION') }}
+        FROM {{ ref('DIM_LOCATION') }}
 
     ),
 
@@ -27,7 +27,7 @@ with
 
         SELECT * 
         
-        FROM {{ ref('ABANOUB_DIM_ORDER') }}
+        FROM {{ ref('DIM_ORDER') }}
 
     ),
 
@@ -35,7 +35,7 @@ with
 
         SELECT * 
         
-        FROM {{ ref('ABANOUB_DIM_PRODUCT') }}
+        FROM {{ ref('DIM_PRODUCT') }}
 
     ),
 
@@ -43,7 +43,7 @@ with
 
         SELECT * 
         
-        FROM {{ ref('ABANOUB_DIM_CUSTOMER') }}
+        FROM {{ ref('DIM_CUSTOMER') }}
 
     ),
 

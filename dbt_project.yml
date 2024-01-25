@@ -38,8 +38,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   SUPERSTORE:
     DWH:
-      +materialized: table
-    Staging:
       +materialized: view
-    Marts:
+    STAGING:
+      +materialized: view
+    MARTS:
       +materialized: view
