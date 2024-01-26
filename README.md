@@ -23,7 +23,7 @@ The goal of this project is to design a star schema using dbt for a dataset sour
             - [DIM_PRODUCT](#dim_product)
         - [SUPERSTORE_FACT](#superstore_fact)
 
-    3. [Marts](#Marts)
+    3. [ANALYTICS](#analytics)
         - [Query 1](#query-1)
  
 5. [Most Common Data Issues](#most-common-data-issues)
@@ -110,7 +110,7 @@ A Snowflake Stage, denoted as SUPERSTORE_STAGE, has been established to serve as
 
  This image  offers a snapshot of the designed star schema, showcasing the relationships between fact and dimension tables.
 
-![SUPERSTORE_STAR_SCHEMA](https://github.com/abanoubsamir0004/dbt_test/assets/153556384/1a2af10d-225a-42fb-adc5-34c3853e0a19)
+![SUPERSTORE_STAR_SCHEMA](https://github.com/abanoubsamir0004/dbt_test/assets/153556384/37f098c5-a75d-4bbd-9b1f-53791c9072e6)
 
 # 4- dbt Models <a name="dbt-models"></a>
 
@@ -283,7 +283,7 @@ The table includes keys from each dimension, providing a link to detailed inform
 
 This fact table provides a consolidated view of sales-related data, enabling in-depth analysis across multiple dimensions.
 
-## 4.3- Marts  <a name="marts"></a>
+## 4.3- ANALYTICS  <a name="analytics"></a>
 
 ### 4.3.1 - Query 1 <a name="query-1"></a>
 
