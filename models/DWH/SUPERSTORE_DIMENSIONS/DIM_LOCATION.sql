@@ -14,7 +14,8 @@ WITH
             COUNTRY,
             STATE, 
             CITY, 
-            REGION
+            REGION,
+            POSTAL_CODE
 
         FROM SOURCE
     ),

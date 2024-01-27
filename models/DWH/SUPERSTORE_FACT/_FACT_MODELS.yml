@@ -52,7 +52,7 @@ models:
         tests:
           - relationships:
               to: ref('DIM_CUSTOMER')
-              field: CUSTOMER_KEY
+              field: CUSTOMER_ID
         constraints:
           - name: FK_CUSTOMER_KEY
             type: foreign_key

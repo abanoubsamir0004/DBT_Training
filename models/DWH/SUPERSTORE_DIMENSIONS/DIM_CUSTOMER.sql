@@ -11,17 +11,15 @@ WITH
     DIM_CUSTOMER AS (
         SELECT DISTINCT
 
-           CUSTOMER_ID AS CUSTOMER_KEY,
+           CUSTOMER_ID,
            CUSTOMER_NAME,
-           SEGMENT,
-           POSTAL_CODE
-
+           SEGMENT
         FROM SOURCE
     ) 
 
 {{ config(
   materialized='table',
-  unique_key='CUSTOMER_KEY',
+  unique_key='CUSTOMER_ID',
   description="This table represents a Customer dimension."
 ) }}
 
