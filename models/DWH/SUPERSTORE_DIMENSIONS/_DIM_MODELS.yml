@@ -3,7 +3,7 @@ version: 2
 models:
   - name: DIM_CUSTOMER
     columns:
-      - name: CUSTOMER_KEY
+      - name: CUSTOMER_ID
         description: "Unique identifier for a customer"
         tests:
           - unique
@@ -11,7 +11,7 @@ models:
         constraints:
           - name: PK_CUSTOMER_KEY
             type: primary_key
-            columns: [CUSTOMER_KEY]
+            columns: [CUSTOMER_ID]
 
       - name: CUSTOMER_NAME
         description: "Name of the customer"
@@ -20,11 +20,6 @@ models:
 
       - name: SEGMENT
         description: "Customer segment"
-        tests:
-          - not_null
-
-      - name: POSTAL_CODE
-        description: "Postal code of the customer"
         tests:
           - not_null
           
@@ -111,7 +106,11 @@ models:
         description: "Region of the location"
         tests:
           - not_null
-
+          
+      - name: POSTAL_CODE
+        description: "Postal code of the customer"
+        tests:
+          - not_null
     meta:
       materialized: table
       unique_key: LOCATION_SK
