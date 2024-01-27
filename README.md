@@ -109,8 +109,8 @@ A Snowflake Stage, denoted as SUPERSTORE_STAGE, has been established to serve as
 # 3- Star Schema <a name="star-schema"></a>
 
  This image  offers a snapshot of the designed star schema, showcasing the relationships between fact and dimension tables.
-
-![SUPERSTORE_STAR_SCHEMA](https://github.com/abanoubsamir0004/dbt_test/assets/153556384/37f098c5-a75d-4bbd-9b1f-53791c9072e6)
+ 
+![SUPERSTORE_STAR_SCHEMA (1)](https://github.com/abanoubsamir0004/dbt_test/assets/153556384/a04515c0-6b97-4736-9000-2f2c1261e296)
 
 # 4- dbt Models <a name="dbt-models"></a>
 
