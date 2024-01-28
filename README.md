@@ -36,6 +36,7 @@ The goal of this project is to design a star schema using dbt for a dataset sour
         - [Profitability by Location](#query-10)
         - [Ship Mode Performance Over Time](#query-11)
         - [Monthly Revenue Growth Rate](#query-12)
+        - [Sales Profit Analytics Over Time](#query-13)
 
 5. [Most Common Data Issues](#most-common-data-issues)
 
@@ -405,8 +406,23 @@ Calculate the monthly revenue growth rate to understand sales trends.
 - Computes the monthly growth rate by comparing total sales with the previous month.
 - Provides insights into the month-over-month growth of total sales.
 
+## 4.3.13 Query 13: Sales Profit Analytics Over Time <a name="query-13"></a>
+
+### Purpose:
+Analyze sales and profit metrics over time, including yearly, quarterly, and monthly dimensions.
+
+### Details:
+- Creates separate analytics views for the year, quarter, and month dimensions.
+- Computes various metrics such as total orders, total sales, total profit, average sales, average profit, and percentiles.
+- Includes standard deviations for both sales and profit.
+- Combines results for all dimensions (year, quarter, and month) into a unified view.
+- The final output is ordered by dimension, year, quarter, and month.
+
 
 # 5- Most Common Data Issues <a name="most-common-data-issues"></a>
 
 1. **`Product ID` Column:**
    - Contains multiple entries with the same `PRODUCT_ID` but different `PRODUCT_NAME`.
+
+2. **Customer:**
+   - Each customer might have a different location, such as a different `COUNTRY`, `CITY`, `REGION`, `STATE`, or `POSTAL_CODE.
