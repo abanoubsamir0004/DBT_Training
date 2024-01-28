@@ -425,4 +425,4 @@ Analyze sales and profit metrics over time, including yearly, quarterly, and mon
    - Contains multiple entries with the same `PRODUCT_ID` but different `PRODUCT_NAME`.
 
 2. **Customer:**
-   - Each customer might have a different location, such as a different `COUNTRY`, `CITY`, `REGION`, `STATE`, or `POSTAL_CODE.
+   - Each customer might have a different location, such as a different `COUNTRY`, `CITY`, `REGION`, `STATE`, or `POSTAL_CODE`.
