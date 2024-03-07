@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: WEATHER_AND_RESTAURANT
+    description: This is a replica of the WEATHER_AND_RESTAURANT database for our task
+    database: RAW
+    schema: WEATHER_AND_RESTAURANT
+    tables:
+      - name: BUSINESS
+      - name: CHECKIN
+      - name: YELP_COVID
+      - name: TIP
+      - name: lv_temperature
+      - name: LV_PRECIPITATION
+      - name: CUSTOMER
+      - name: REVIEWS
