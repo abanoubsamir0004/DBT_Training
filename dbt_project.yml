@@ -36,10 +36,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  SUPERSTORE:
+  Task5:
     DWH:
-      +materialized: view
+      +materialized: table
+      +schema: DWH
     STAGING:
-      +materialized: view
+      +materialized: table
+      +schema: STAGING
     MARTS:
       +materialized: view
